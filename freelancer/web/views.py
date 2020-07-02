@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html', {'name': 'Ankur'})
+    return render(request, 'index.html', {'company_name': 'Freelancer'})
 
 def portfolio(request):
     return render(request, 'portfolio.html')
