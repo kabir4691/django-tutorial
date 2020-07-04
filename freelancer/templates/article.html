@@ -2,6 +2,15 @@
 
 {% block content %}
 
-<h1 style="padding-top: calc(6rem + 74px)">{{blog_id}}</h1>
+<div class="container">
+<h1 style="padding-top: calc(6rem + 74px)">{{article.title}}</h1>
+<span>{{article.date}}</span>
+
+<p style="padding: 3rem 1rem; background-color: rgba(0,0,0,0.05);">
+    {{article.content}}
+</p>
+
+<p> - {{article.author}}</p>
+</div>
 
 {% endblock %}

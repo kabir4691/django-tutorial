@@ -7,8 +7,9 @@
 <h1 style="padding-top: calc(6rem + 74px); ">Blog list</h1>
 
 <ul>
-    <li><a href="{% url 'blog:article' '1' %}">Why Python?</a></li>
-    <li><a href="{% url 'blog:article' '2' %}">My first Django project</a></li>
+    {% for article in blog %}
+    <li><a href="{% url 'blog:article' article.id %}">{{article.title}}</a></li>
+    {% endfor %}
 </ul>
 
 </div>
