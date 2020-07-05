@@ -7,8 +7,8 @@
 <h1 style="padding-top: calc(6rem + 74px); ">Blog list</h1>
 
 <ul>
-    {% for article in blog %}
-    <li><a href="{% url 'blog:article' article.id %}">{{article.title}}</a></li>
+    {% for post in blog %}
+    <li><a href="{% url 'blog:post' post.id %}">{{post.title}}</a></li>
     {% endfor %}
 </ul>
 

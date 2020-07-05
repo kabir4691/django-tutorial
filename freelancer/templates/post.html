@@ -3,14 +3,14 @@
 {% block content %}
 
 <div class="container">
-<h1 style="padding-top: calc(6rem + 74px)">{{article.title}}</h1>
-<span>{{article.date}}</span>
+<h1 style="padding-top: calc(6rem + 74px)">{{post.title}}</h1>
+<span>{{post.date}}</span>
 
 <p style="padding: 3rem 1rem; background-color: rgba(0,0,0,0.05);">
-    {{article.content}}
+    {{post.content}}
 </p>
 
-<p> - {{article.author}}</p>
+<p> - {{post.author}}</p>
 </div>
 
 {% endblock %}

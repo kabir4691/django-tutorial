@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Blog(models.Model):
+class Post(models.Model):
     id: models.IntegerField()
     title: models.CharField(max_length=200)
     content: models.CharField()
