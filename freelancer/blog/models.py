@@ -1,9 +1,10 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Post(models.Model):
-    id: models.IntegerField()
-    title: models.CharField(max_length=200)
-    content: models.CharField()
-    author: models.CharField(default='Ankur', max_length=200)
-    date: models.CharField(max_length=20)
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    date = models.DateTimeField(default=timezone.now)
+    featured = models.BooleanField(default=False)
