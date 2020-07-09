@@ -416,40 +416,43 @@
 
 <script>
     function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
             }
         }
+        return cookieValue;
     }
-    return cookieValue;
-}
 
-    function submitForm() {
+    async function submitForm() {
         data={
-              name: "Arkesh Jaiswal",
-              email: "arkesh@gmail.com",
-              phone: "1234567890",
-              message: "Hello World - post from js!"
+              "name": "Arkesh Jaiswal",
+              "email": "arkesh@gmail.com",
+              "phone": "1234567890",
+              "message": "Hello World - post from js!"
           }
-      fetch('http://localhost:8000/contact/', {
-          method: 'POST',
-          body: data,
-          credentials: 'same-origin',
-          headers: {
-            "X-CSRFToken": getCookie("csrftoken"),
-            "Accept": "application/json",
-            'Content-Type': 'application/json'
-          }
-      })
-      .then(response => response.json())
-      .then(data => console.log(data));
+        csrf_token = await getCookie('csrftoken')
+        fetch('http://localhost:8000/contact/', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            credentials: 'include',
+            headers: {
+                'X-CSRFToken': csrf_token,
+                'X-Requsted-With': 'XMLHttpRequest'
+                // 'Accept': 'application/json',
+                // 'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(err => console.error(err));
     }
 </script>
 {% endblock %}
